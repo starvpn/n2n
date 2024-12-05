@@ -69,12 +69,12 @@ void mgmt_error (mgmt_req_t *req, strbuf_t *buf, char *msg) {
 }
 
 void mgmt_stop (mgmt_req_t *req, strbuf_t *buf) {
-    traceEvent(TRACE_DEBUG, "mgmt_stop");
+    traceEvent(TRACE_NORMAL, "mgmt_stop");
     if(req->type==N2N_MGMT_WRITE) {
-        traceEvent(TRACE_DEBUG, "mgmt_stop: write");
+        traceEvent(TRACE_NORMAL, "mgmt_stop: write");
         *req->keep_running = false;
     }
-    traceEvent(TRACE_DEBUG, "mgmt_stop: send");
+    traceEvent(TRACE_NORMAL, "mgmt_stop: send");
     send_json_1uint(req, buf, "row", "keep_running", *req->keep_running);
 }
 
