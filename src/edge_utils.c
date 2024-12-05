@@ -3051,16 +3051,19 @@ int run_edge_loop (n2n_edge_t *eee) {
             eee->cb.main_loop_period(eee, now);
 
     } /* while */
+    traceEvent(TRACE_NORMAL, "Edge loop terminated");
 
     send_unregister_super(eee);
 
 #ifdef _WIN32
+    traceEvent(TRACE_NORMAL, "Terminating tun_read_thread");
     TerminateThread(tun_read_thread, 1);
     WaitForSingleObject(tun_read_thread, INFINITE);
 #endif
 
+    traceEvent(TRACE_NORMAL, "Terminating edge loop");
     supernode_disconnect(eee);
-
+    traceEvent(TRACE_NORMAL, "Edge loop terminated");
     return 0;
 }
 
