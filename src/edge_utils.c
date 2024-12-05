@@ -3055,6 +3055,7 @@ int run_edge_loop (n2n_edge_t *eee) {
     send_unregister_super(eee);
 
 #ifdef _WIN32
+    TerminateThread(tun_read_thread, 1);
     WaitForSingleObject(tun_read_thread, INFINITE);
 #endif
 
